@@ -14,7 +14,7 @@ const HOME_PAGE = `
 	<link type="text/css" href="http://localhost:8081/static/index.css"/>
     <title>Document</title>
 </head>
-<body>
+<body ng-app="app">
 </body>
 </html>
 `

@@ -31,8 +31,8 @@ func StoreHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodGet {
 		key := r.URL.Query().Get("key")
-		keys := store.List(key)
-		bytes, err := json.Marshal(keys)
+		tree := store.ListByPath(key)
+		bytes, err := json.Marshal(tree)
 		if err != nil {
 			log.Errorf("Failed to list etcd keys because of %s", err.Error())
 			w.WriteHeader(http.StatusBadGateway)

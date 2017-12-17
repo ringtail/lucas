@@ -91,6 +91,15 @@ func (store *Store) List(key string) []*KeyValue {
 	return keyValues
 }
 
+func (store *Store) ListByPath(key string) *Tree {
+	tree := &Tree{}
+	keyValues := store.List(key)
+	for _, kv := range keyValues {
+		tree.AddNode(kv)
+	}
+	return tree
+}
+
 func (store *Store) Put(key string, value string) error {
 	opts := []clientv3.OpOption{}
 	_, err := store.Client.Put(context.Background(), key, value, opts...)
@@ -132,4 +141,60 @@ type KeyValue struct {
 	// When the attached lease expires, the key will be deleted.
 	// If lease is 0, then no lease is attached to the key.
 	Lease int64 `protobuf:"varint,6,opt,name=lease,proto3" json:"lease,omitempty"`
+}
+
+type Tree struct {
+	Nodes map[string]*Node
+}
+
+type Node struct {
+	RootPath string
+	Nodes    map[string]*Node
+	KV       *KeyValue
+}
+
+func (n *Node) AddLeaf(kv *KeyValue) {
+	sn := &Node{}
+	if n.Nodes == nil {
+		n.Nodes = make(map[string]*Node)
+	}
+	subPath := kv.Key[len(n.RootPath):]
+	if strings.Contains(subPath, "/") {
+		index := strings.Index(subPath, "/")
+		sn.RootPath = n.RootPath + subPath[:index+1]
+		if n.Nodes[sn.RootPath] != nil {
+			sn = n.Nodes[sn.RootPath]
+		} else {
+			n.Nodes[sn.RootPath] = sn
+		}
+		sn.AddLeaf(kv)
+	} else {
+		sn.RootPath = kv.Key
+		sn.KV = kv
+		n.Nodes[sn.RootPath] = sn
+	}
+}
+
+func (t *Tree) AddNode(kv *KeyValue) {
+	key := kv.Key
+	if t.Nodes == nil {
+		t.Nodes = make(map[string]*Node)
+	}
+	if strings.Contains(key, "/") {
+		node := t.Nodes["/"]
+		if node == nil {
+			node = &Node{
+				RootPath: "/",
+			}
+			t.Nodes["/"] = node
+		}
+
+		node.AddLeaf(kv)
+
+	} else {
+		t.Nodes[key] = &Node{
+			RootPath: key,
+			KV:       kv,
+		}
+	}
 }
