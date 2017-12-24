@@ -8,7 +8,8 @@
 [![Codecov](https://codecov.io/gh/ringtail/lucas/branch/master/graph/badge.svg)](https://codecov.io/gh/ringtail/lucas)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-etcd v3 api browser 
+## What is lucas 
+lucas is etcd v3 api browser,You can use lucas to operate kubernetes service discovery conveniently.
 
 ## Usage
 ```
