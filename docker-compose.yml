@@ -4,6 +4,11 @@ services:
     build:
         context: .
     image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.1
+    environment:
+      - CA_FILE=""
+      - KEY_FILE=""
+      - CERT_FILE=""
+      - ENDPOINTS=""
     ports:
       - 8080
     restart: always
