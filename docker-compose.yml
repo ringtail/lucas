@@ -1,0 +1,9 @@
+version: "2"
+services:
+  web:
+    build:
+        context: .
+    image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.1
+    ports:
+      - 8080
+    restart: always

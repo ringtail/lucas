@@ -19,6 +19,7 @@ import (
 	"github.com/ringtail/lucas/backend/types"
 	"flag"
 	"fmt"
+	"os"
 )
 
 const COMMAND_DESC = `
@@ -74,6 +75,15 @@ func main() {
 	} else if version == true {
 		fmt.Println(VERSION)
 		return
+	}
+	if os.Getenv("CA_FILE") != "" || os.Getenv("KEY_FILE") != "" || os.Getenv("CERT_FILE") != "" {
+		ca_file = os.Getenv("CA_FILE")
+		key_file = os.Getenv("KEY_FILE")
+		cert_file = os.Getenv("CERT_FILE")
+	}
+
+	if os.Getenv("ENDPOINTS") != "" {
+		endpoints = os.Getenv("ENDPOINTS")
 	}
 
 	args := flag.Args()
