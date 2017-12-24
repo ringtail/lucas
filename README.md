@@ -4,6 +4,10 @@
   <p align="center">etcd v3 key value browser</p>
 </p>
 
+[![Build Status](https://travis-ci.org/ringtail/lucas.svg?branch=master)](https://travis-ci.org/ringtail/lucas)
+[![Codecov](https://codecov.io/gh/ringtail/lucas/branch/master/graph/badge.svg)](https://codecov.io/gh/ringtail/lucas)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 etcd v3 api browser 
 
 ## Usage
