@@ -36,13 +36,13 @@ GLOBAL OPTIONS:
 ```
 
 ## Run in docker
-
-// Simply use docker command     
+```
+# Simply use docker command     
 docker run -d -p 8088:8080  -v /etc/kubernetes/pki/etcd/:/etc/kubernetes/pki/etcd/ -e CA_FILE=/etc/kubernetes/pki/etcd/ca.pem -e CERT_FILE=/etc/kubernetes/pki/etcd/etcd-client.pem -e KEY_FILE=/etc/kubernetes/pki/etcd/etcd-client-key.pem -e ENDPOINTS="YOUR ENDPOINTS" registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.1
 
-// use yaml          
+# use yaml          
 kubectl create -f kubernetes-deployment.yaml (Add master node deployment affinity)
-
+```
 ## Demo
 
 <img src="http://ringtail-lucas.oss-cn-beijing.aliyuncs.com/demo/113671514107341_.pic_hd.jpg" width="90%"/>
