@@ -37,19 +37,19 @@ spec:
         name: web
         ports:
         - containerPort: 8080
-      volumeMounts:
-      - mountPath: /etc/kubernetes/pki/etcd
-        name: etcd-certs-0
-        readOnly: true
-      env:
-      - name: CA_FILE
-        value: /etc/kubernetes/pki/etcd/ca.pem
-      - name: CERT_FILE
-        value: /etc/kubernetes/pki/etcd/etcd-client.pem
-      - name: KEY_FILE
-        value: /etc/kubernetes/pki/etcd/etcd-client-key.pem
-      - name: ENDPOINTS
-        value: "YOUR ENDPOINTS"
+        env:
+        - name: CA_FILE
+          value: /etc/kubernetes/pki/etcd/ca.pem
+        - name: CERT_FILE
+          value: /etc/kubernetes/pki/etcd/etcd-client.pem
+        - name: KEY_FILE
+          value: /etc/kubernetes/pki/etcd/etcd-client-key.pem
+        - name: ENDPOINTS
+          value: "{{ENDPOINTS}}"
+        volumeMounts:
+        - mountPath: /etc/kubernetes/pki/etcd
+          name: etcd-certs-0
+          readOnly: true
       volumes:
       - hostPath:
           path: /etc/kubernetes/pki/etcd
