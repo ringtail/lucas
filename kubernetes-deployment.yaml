@@ -32,6 +32,11 @@ spec:
       labels:
         derrick.service: lucas
     spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: ''
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
       containers:
       - image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.1
         name: web
