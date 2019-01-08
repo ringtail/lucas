@@ -1,14 +1,15 @@
 package services
 
 import (
-	"github.com/coreos/etcd/clientv3"
-	log "github.com/Sirupsen/logrus"
-	"time"
-	"strings"
 	"crypto/tls"
+	"errors"
+	"strings"
+	"time"
+
+	log "github.com/Sirupsen/logrus"
+	"github.com/coreos/etcd/clientv3"
 	"github.com/coreos/etcd/pkg/transport"
 	"golang.org/x/net/context"
-	"errors"
 )
 
 func NewWithOutTLS(endpoints string) (*Store, error) {
@@ -54,11 +55,11 @@ func createTlsConf(ca, key, cert string) (*tls.Config, error) {
 	cfgtls.KeyFile = key
 	cfgtls.CertFile = cert
 	clientTLS, err := cfgtls.ClientConfig()
-	//add default InsecureSkipVerify
-	clientTLS.InsecureSkipVerify = true
 	if err != nil {
 		return nil, err
 	}
+	//add default InsecureSkipVerify
+	clientTLS.InsecureSkipVerify = true
 	return clientTLS, nil
 }
 
@@ -121,8 +122,8 @@ func (store *Store) Delete(key string) error {
 }
 
 /**
-	mock a etcd pb result
- */
+mock a etcd pb result
+*/
 
 type KeyValue struct {
 	// key is the key in bytes. An empty key is not allowed.
