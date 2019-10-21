@@ -23,7 +23,7 @@ const HOME_PAGE = `
 		</div>
 		<div class="col-md-4 form" style="min-height:500px" ng-if="json">
 			<textarea class="data-viewer form-control" ng-model="json.value"></textarea>
-			<button update-item kv="json" class="btn btn-primary pull-right" style="margin-right:5%;margin-top:8px;">更改</button>
+			<button update-item kv="json" class="btn btn-primary pull-right" style="margin-right:5%;margin-top:8px;">change</button>
 		<div>
 	</div>
 </body>
