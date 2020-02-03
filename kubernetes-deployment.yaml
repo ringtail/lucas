@@ -38,7 +38,7 @@ spec:
         - key: node-role.kubernetes.io/master
           operator: Exists
       containers:
-      - image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.1
+      - image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.2
         name: web
         ports:
         - containerPort: 8080

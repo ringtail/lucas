@@ -3,7 +3,7 @@ services:
   web:
     build:
         context: .
-    image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.1
+    image: registry.cn-hangzhou.aliyuncs.com/ringtail/lucas:0.0.2
     environment:
       - CA_FILE=""
       - KEY_FILE=""
